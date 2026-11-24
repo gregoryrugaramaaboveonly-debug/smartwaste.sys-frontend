@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* Force the app to fill the screen */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0b0f19; /* Deep dark blue */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.15), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.1), transparent 40%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
