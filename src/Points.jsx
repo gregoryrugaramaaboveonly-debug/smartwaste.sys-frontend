@@ -13,7 +13,7 @@ import L from "leaflet";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
 
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
+const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({

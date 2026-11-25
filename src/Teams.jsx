@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
 
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
+const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
 
 const teamImages = [
   "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1000&auto=format&fit=crop",

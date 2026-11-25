@@ -7,7 +7,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
+const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
 
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop";
 

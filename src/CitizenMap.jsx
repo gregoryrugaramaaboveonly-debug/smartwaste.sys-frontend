@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import CitizenLayout from "./CitizenLayout";
 
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
+const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
 
 
 const greenIcon = new L.Icon({

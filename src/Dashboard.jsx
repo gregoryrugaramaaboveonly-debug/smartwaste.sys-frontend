@@ -13,7 +13,7 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveCo
 import Layout from "./Layout";
 
 
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
+const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
 
 export default function Dashboard() {
   const navigate = useNavigate();
