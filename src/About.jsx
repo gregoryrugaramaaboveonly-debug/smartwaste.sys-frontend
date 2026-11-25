@@ -1,13 +1,5 @@
-/**
- * About.jsx
- * About Us page featuring corporate background history, the global waste crisis,
- * mission statement, impact statistics, and human-centered copywriting.
- */
-
 import { useNavigate } from "react-router-dom";
 import Layout from "./Layout";
-
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
 
 export default function About() {
   const navigate = useNavigate();
@@ -22,7 +14,6 @@ export default function About() {
     <Layout>
       <div style={{ position: "relative", minHeight: "calc(100vh - 100px)", paddingBottom: "40px" }}>
         
-        {/* PAGE-SPECIFIC BACKGROUND IMAGE WITH GRADIENT OVERLAY */}
         <div style={{ position: "fixed", inset: 0, zIndex: -1, pointerEvents: "none" }}>
           <img 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
@@ -34,7 +25,6 @@ export default function About() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: "40px", position: "relative", zIndex: 1 }}>
           
-          {/* HERO SECTION WITH USER'S URGENT COPYWRITING */}
           <div style={{ position: "relative", borderRadius: "24px", overflow: "hidden", minHeight: "450px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", padding: "60px 40px", ...glassCard }}>
             <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2070&auto=format&fit=crop" alt="Waste Management" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.3 }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, var(--bg-color), rgba(0,0,0,0.6), rgba(0,0,0,0.3))" }} />
@@ -58,7 +48,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* IMPACT STATISTICS GRID */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
             {[
               { value: "10,000+ Tonnes", label: "Waste removed from our streets, our neighborhoods, and our oceans. That's not just a number. It's a better city." },
@@ -77,7 +66,6 @@ export default function About() {
             ))}
           </div>
 
-          {/* WHY SMARTWASTE EXISTS / MISSION SECTION */}
           <div 
             onMouseEnter={(e) => handleCardHover(e, true)}
             onMouseLeave={(e) => handleCardHover(e, false)}
@@ -89,7 +77,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* THE GLOBAL CRISIS SECTION */}
           <div 
             onMouseEnter={(e) => handleCardHover(e, true)}
             onMouseLeave={(e) => handleCardHover(e, false)}
@@ -117,7 +104,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* CORE VALUES & TRUST */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))", gap: "24px" }}>
             <div 
               onMouseEnter={(e) => handleCardHover(e, true)}

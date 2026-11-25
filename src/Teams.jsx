@@ -45,7 +45,7 @@ export default function Teams() {
   const handleAddTeam = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/teams", {
+      const response = await fetch(`${API_URL}/api/teams`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(formData)
@@ -62,7 +62,7 @@ export default function Teams() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this team?")) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/teams/${id}`, {
+      const response = await fetch(`${API_URL}/api/teams/${id}`,  {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });

@@ -1,12 +1,9 @@
-
-
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Lamp from "./Lamp";
 
 const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
-
 
 function Login() {
   const [isLampOn, setIsLampOn] = useState(false);
@@ -21,7 +18,6 @@ function Login() {
     setMessage("Logging in...");
 
     try {
-      // FIXED: This is the correct login endpoint now
       const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -36,7 +32,6 @@ function Login() {
         localStorage.setItem("role", data.user.role);
         localStorage.setItem("name", data.user.name);
         
-        // Both reporters (citizens) and admins now route to the unified dashboard
         navigate("/dashboard"); 
       } else {
         setMessage(data.error || "Login failed");

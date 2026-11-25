@@ -48,7 +48,7 @@ export default function Schedules() {
   const handleCreateSchedule = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/schedules", {
+      const response = await fetch(`${API_URL}/api/schedules`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(formData)

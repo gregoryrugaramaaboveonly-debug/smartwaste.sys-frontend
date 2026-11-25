@@ -16,7 +16,8 @@ function Register() {
     setMessage("Creating account...");
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      // FIXED: Changed localhost to API_URL
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password, role }),
@@ -28,7 +29,7 @@ function Register() {
         setMessage("Registration successful! Redirecting to login...");
         setTimeout(() => navigate("/"), 2000);
       } else {
-        setMessage(data.error);
+        setMessage(data.error || "Registration failed");
       }
     } catch (error) {
       setMessage("Server error. Is the backend running?");

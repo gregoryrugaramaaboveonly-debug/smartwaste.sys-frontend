@@ -54,7 +54,7 @@ export default function Points() {
   const handleAddPoint = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/points", {
+      const response = await fetch(`${API_URL}/api/points`, { 
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(formData)
@@ -72,7 +72,7 @@ export default function Points() {
     const teamId = selectedTeams[reportId];
     if (!teamId) return toast.error("Please select a team first");
     try {
-      const response = await fetch(`http://localhost:5000/api/reports/${reportId}/assign`, {
+      const response = await fetch(`${API_URL}/api/reports/${reportId}/assign`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ team_id: teamId })
