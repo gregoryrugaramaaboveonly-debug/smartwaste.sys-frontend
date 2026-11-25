@@ -4,6 +4,9 @@
  * citizen complaint logs, and photographic background styling.
  */
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
@@ -18,8 +21,8 @@ export default function Reports() {
 
   const fetchData = () => {
     Promise.all([
-      fetch("http://localhost:5000/api/reports", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()).catch(() => []),
-      fetch("http://localhost:5000/api/points", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()).catch(() => [])
+      fetch(`${API_URL}/api/reports`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
+      fetch(`${API_URL}/api/teams`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json())
     ]).then(([reportsData, pointsData]) => {
       setReports(Array.isArray(reportsData) ? reportsData : []);
       setPoints(Array.isArray(pointsData) ? pointsData : []);

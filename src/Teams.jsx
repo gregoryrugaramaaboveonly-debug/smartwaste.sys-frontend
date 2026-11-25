@@ -4,6 +4,9 @@
  * interactive workforce modals, and human-centered copywriting.
  */
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
@@ -28,7 +31,8 @@ export default function Teams() {
   const isAdmin = localStorage.getItem("role") === "admin";
 
   const fetchTeams = () => {
-    fetch("http://localhost:5000/api/teams", { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${API_URL}/api/teams`, { headers: { Authorization: `Bearer ${token}` } })
+  .then(res => res.json())
       .then(res => res.json())
       .then(data => { setTeams(Array.isArray(data) ? data : []); setLoading(false); })
       .catch(() => setLoading(false));

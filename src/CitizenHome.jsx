@@ -2,20 +2,29 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CitizenLayout from "./CitizenLayout";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
+
 export default function CitizenHome() {
   const navigate = useNavigate();
   const [stats, setStats] = useState({ totalReports: 0, resolvedReports: 0 });
   const userName = localStorage.getItem("name") || "Citizen";
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/reports/public")
+    useEffect(() => {
+    // 1. Fetch the public reports
+    fetch(`${API_URL}/api/reports/public`)
       .then(res => res.json())
       .then(data => {
-        setStats({
-          totalReports: data.length,
-          resolvedReports: data.filter(r => r.status === "Resolved").length
-        });
-      }).catch(() => {});
+        setReports(Array.isArray(data) ? data : []); // Make sure it's an array
+        
+        // Only set loading to false if you have a setLoading state
+        // setLoading(false); 
+      })
+      .catch(err => {
+        console.error("Error fetching public reports:", err);
+        // setLoading(false);
+      });
   }, []);
 
   return (

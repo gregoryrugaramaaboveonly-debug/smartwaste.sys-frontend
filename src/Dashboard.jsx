@@ -4,6 +4,9 @@
  * and immersive photographic background layering with human-centered copy.
  */
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
@@ -21,9 +24,12 @@ export default function Dashboard() {
     if (!token) { navigate("/"); return; }
 
     Promise.all([
-      fetch("http://localhost:5000/api/reports", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
-      fetch("http://localhost:5000/api/points", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
-      fetch("http://localhost:5000/api/teams", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json())
+      fetch(`${API_URL}/api/reports`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
+      fetch(`${API_URL}/api/points`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
+      fetch(`${API_URL}/api/teams`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json())
+
+
+
     ]).then(([reportsData, pointsData, teamsData]) => {
       setReports(Array.isArray(reportsData) ? reportsData : []);
       setPoints(Array.isArray(pointsData) ? pointsData : []);

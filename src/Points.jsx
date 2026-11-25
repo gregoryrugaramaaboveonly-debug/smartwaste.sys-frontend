@@ -3,6 +3,8 @@
  * Collection Points map and directory featuring interactive Leaflet mapping,
  * quick municipal team assignment, and background styling.
  */
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -34,9 +36,9 @@ export default function Points() {
 
   const fetchData = () => {
     Promise.all([
-      fetch("http://localhost:5000/api/points", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
-      fetch("http://localhost:5000/api/reports", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
-      fetch("http://localhost:5000/api/teams", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json())
+      fetch(`${API_URL}/api/points`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
+      fetch(`${API_URL}/api/reports`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()),
+      fetch(`${API_URL}/api/teams`, { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json())
     ]).then(([pointsData, reportsData, teamsData]) => {
       setPoints(Array.isArray(pointsData) ? pointsData : []);
       setReports(Array.isArray(reportsData) ? reportsData : []);

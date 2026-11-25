@@ -4,6 +4,10 @@
  * configuration modals, and photographic background styling.
  */
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
@@ -20,18 +24,14 @@ export default function Schedules() {
   const token = localStorage.getItem("token");
 
   const fetchData = () => {
-    Promise.all([
-      fetch("http://localhost:5000/api/schedules", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()).catch(() => []),
-      fetch("http://localhost:5000/api/points", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()).catch(() => []),
-      fetch("http://localhost:5000/api/teams", { headers: { Authorization: `Bearer ${token}` } }).then(res => res.json()).catch(() => [])
-    ]).then(([schedulesData, pointsData, teamsData]) => {
-      setSchedules(Array.isArray(schedulesData) ? schedulesData : []);
-      setPoints(Array.isArray(pointsData) ? pointsData : []);
-      setTeams(Array.isArray(teamsData) ? teamsData : []);
+  fetch(`${API_URL}/api/schedules`, { headers: { Authorization: `Bearer ${token}` } })
+    .then(res => res.json())
+    .then(data => {
+      setSchedules(Array.isArray(data) ? data : []);
       setLoading(false);
-    }).catch(() => setLoading(false));
-  };
-
+    })
+    .catch(() => setLoading(false));
+};
   useEffect(() => { fetchData(); }, [token]);
 
   const handleOpenModal = (dateStr) => {

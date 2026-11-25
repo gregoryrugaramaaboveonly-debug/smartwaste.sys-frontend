@@ -5,6 +5,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import CitizenLayout from "./CitizenLayout";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const greenIcon = new L.Icon({
   iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
   shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -41,13 +43,18 @@ export default function CitizenMap() {
 
   const fetchData = () => {
     Promise.all([
-      fetch("http://localhost:5000/api/points/public").then(res => res.json()),
-      fetch("http://localhost:5000/api/reports/public").then(res => res.json())
-    ]).then(([pointsData, reportsData]) => {
-      setPoints(Array.isArray(pointsData) ? pointsData : []);
-      setReports(Array.isArray(reportsData) ? reportsData : []);
-      setLoading(false);
-    }).catch(() => setLoading(false));
+      fetch(`${API_URL}/api/points/public`).then(res => res.json()),
+      fetch(`${API_URL}/api/reports/public`).then(res => res.json())
+    ])
+      .then(([pointsData, reportsData]) => {
+        setPoints(Array.isArray(pointsData) ? pointsData : []);
+        setReports(Array.isArray(reportsData) ? reportsData : []);
+        setLoading(false); // Uncommented so loading screen goes away
+      })
+      .catch(err => {
+        console.error("Error fetching map data:", err);
+        setLoading(false); // Uncommented so it doesn't get stuck on error
+      });
   };
 
   useEffect(() => { fetchData(); }, []);
@@ -55,7 +62,7 @@ export default function CitizenMap() {
   const handleReport = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/reports/public", {
+      const response = await fetch(`${API_URL}/api/reports/public`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, point_id: showForm._id })
@@ -69,7 +76,7 @@ export default function CitizenMap() {
   };
 
   const handleUpvote = async (reportId) => {
-    await fetch(`http://localhost:5000/api/reports/public/${reportId}/upvote`, { method: "PATCH" });
+    await fetch(`${API_URL}/api/reports/public/${reportId}/upvote`, { method: "PATCH" });
     fetchData();
   };
 
