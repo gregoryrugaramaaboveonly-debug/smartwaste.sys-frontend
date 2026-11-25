@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "https://smartwaste-sys-backend.onrender.com";
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
 
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
