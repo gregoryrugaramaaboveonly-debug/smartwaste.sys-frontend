@@ -25,19 +25,26 @@ function Login() {
       });
 
       const data = await response.json();
+      
+      // THIS IS CRUCIAL - Look at your browser console to see what the backend sends!
+      console.log("Backend Response:", data); 
 
       if (response.ok) {
         setMessage("Login successful!");
+        
+        // Save the token and user info
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.user.role);
         localStorage.setItem("name", data.user.name);
         
+        // Navigate to dashboard
         navigate("/dashboard"); 
       } else {
         setMessage(data.error || "Login failed");
       }
     } catch (error) {
       setMessage("Server error. Is the backend running?");
+      console.error("Login error:", error);
     }
   };
 
