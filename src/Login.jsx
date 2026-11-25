@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "https://smartwaste-sys-backend.onrender.com";
 
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,12 +18,12 @@ function Login() {
     setMessage("Logging in...");
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/change-password`, {
-  method: "PUT",
-  headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-  body: JSON.stringify({ oldPassword, newPassword })
-});
-
+      // FIXED: This is the correct login endpoint now
+      const response = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await response.json();
 
@@ -36,7 +36,7 @@ function Login() {
         // Both reporters (citizens) and admins now route to the unified dashboard
         navigate("/dashboard"); 
       } else {
-        setMessage(data.error);
+        setMessage(data.error || "Login failed");
       }
     } catch (error) {
       setMessage("Server error. Is the backend running?");

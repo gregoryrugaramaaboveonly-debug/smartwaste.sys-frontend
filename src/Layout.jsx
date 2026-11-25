@@ -7,6 +7,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://smartwaste-sys-backend.onrender.com";
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop";
 
 export default function Layout({ children }) {
@@ -59,7 +60,8 @@ export default function Layout({ children }) {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/change-password", {
+      // FIXED: Now uses the dynamic API_URL
+      const response = await fetch(`${API_URL}/api/auth/change-password`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ oldPassword, newPassword })
@@ -198,7 +200,6 @@ export default function Layout({ children }) {
       alignItems: "center", 
       zIndex: 10000 
     },
-    // FULLY THEME-ADAPTIVE MODAL BOX (SOLID WHITE IN LIGHT MODE)
     modalBox: { 
       backgroundColor: isDarkMode ? "rgba(15, 23, 42, 0.95)" : "#ffffff", 
       border: isDarkMode ? "1px solid rgba(255, 255, 255, 0.15)" : "1px solid rgba(0, 0, 0, 0.15)", 
@@ -222,7 +223,6 @@ export default function Layout({ children }) {
   return (
     <div style={{ ...styles.appContainer, ...cssVariables }}>
       
-      {/* UNIVERSAL BLURRED PHOTOGRAPHIC BACKGROUND */}
       <div style={styles.bgContainer}>
         <img 
           src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?q=80&w=2070&auto=format&fit=crop" 
@@ -232,7 +232,6 @@ export default function Layout({ children }) {
         <div style={styles.bgOverlay} />
       </div>
 
-      {/* SIDEBAR NAVIGATION */}
       <div style={styles.sidebar}>
         <div>
           <div style={styles.logoArea}>
@@ -291,7 +290,6 @@ export default function Layout({ children }) {
         </div>
       </div>
 
-      {/* MAIN CONTENT AREA */}
       <div style={styles.mainContent}>
         <div>
           <div style={styles.topHeader}>
@@ -319,14 +317,12 @@ export default function Layout({ children }) {
           </div>
         </div>
 
-        {/* GLOBAL COPYRIGHT FOOTER */}
         <div style={styles.footerArea}>
           <p style={{ margin: "0 0 6px 0", fontWeight: "700", color: "var(--text-color)" }}>SmartWaste — Building Cleaner Cities, Together.</p>
           <p style={{ margin: 0 }}>© 2026 SmartWaste Civic Operations. All rights reserved.</p>
         </div>
       </div>
 
-      {/* PASSWORD CHANGE MODAL */}
       {showPasswordModal && (
         <div style={styles.modalOverlay}>
           <div style={styles.modalBox}>
