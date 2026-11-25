@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 
+
+
 export default function Lamp({ isOn, onPull }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 10 }}>

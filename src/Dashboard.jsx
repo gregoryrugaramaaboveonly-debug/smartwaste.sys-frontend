@@ -4,13 +4,16 @@
  * and immersive photographic background layering with human-centered copy.
  */
 
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import Layout from "./Layout";
+
+
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
 
 export default function Dashboard() {
   const navigate = useNavigate();

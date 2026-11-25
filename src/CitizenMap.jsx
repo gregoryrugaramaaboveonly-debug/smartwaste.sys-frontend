@@ -5,7 +5,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import CitizenLayout from "./CitizenLayout";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
+
 
 const greenIcon = new L.Icon({
   iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",

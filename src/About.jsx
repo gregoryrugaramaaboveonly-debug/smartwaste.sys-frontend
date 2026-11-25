@@ -7,6 +7,8 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "./Layout";
 
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
+
 export default function About() {
   const navigate = useNavigate();
   const glassCard = { backgroundColor: "var(--glass-bg)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid var(--glass-border)", borderRadius: "24px", boxShadow: "0 8px 32px rgba(0,0,0,0.1)", transition: "all 0.3s ease" };

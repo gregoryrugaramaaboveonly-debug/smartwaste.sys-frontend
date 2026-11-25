@@ -1,9 +1,12 @@
-const API_URL = "https://smartwaste-sys-backend.onrender.com";
+
 
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Lamp from "./Lamp";
+
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
+
 
 function Login() {
   const [isLampOn, setIsLampOn] = useState(false);

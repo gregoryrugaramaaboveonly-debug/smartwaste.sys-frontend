@@ -5,12 +5,14 @@
  */
 
 
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
+
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
 
 export default function Schedules() {
   const [schedules, setSchedules] = useState([]);
@@ -32,6 +34,8 @@ export default function Schedules() {
     })
     .catch(() => setLoading(false));
 };
+
+
   useEffect(() => { fetchData(); }, [token]);
 
   const handleOpenModal = (dateStr) => {

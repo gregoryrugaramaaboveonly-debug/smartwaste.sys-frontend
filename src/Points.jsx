@@ -3,7 +3,7 @@
  * Collection Points map and directory featuring interactive Leaflet mapping,
  * quick municipal team assignment, and background styling.
  */
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 import { useState, useEffect } from "react";
@@ -12,6 +12,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
+
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({

@@ -4,12 +4,14 @@
  * citizen complaint logs, and photographic background styling.
  */
 
-const API_URL = import.meta.env.VITE_API_URL;
 
 
 import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
+
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
+
 
 export default function Reports() {
   const [reports, setReports] = useState([]);
