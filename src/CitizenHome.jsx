@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CitizenLayout from "./CitizenLayout";
 
-const API_URL = "https://smartwaste-sys-backend-2.onrender.com";
+const API_URL = "https://smartwaste-sys-backend.onrender.com";
 
 export default function CitizenHome() {
   const navigate = useNavigate();
