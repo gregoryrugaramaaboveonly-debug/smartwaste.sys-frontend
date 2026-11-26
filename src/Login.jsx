@@ -18,11 +18,16 @@ function Login() {
     setMessage("Logging in...");
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const controller = new AbortController();
+const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 seconds
+
+const response = await fetch(`${API_URL}/api/auth/login`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email, password }),
+  signal: controller.signal
+});
+clearTimeout(timeoutId);
 
       const data = await response.json();
       
